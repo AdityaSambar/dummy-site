@@ -19,6 +19,8 @@
     .video-wrap { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 8px; }
     .video-wrap iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
     footer { text-align: center; padding: 2rem; color: #888; font-size: 0.8rem; }
+    button { font: inherit; padding: 0.4rem 0.75rem; border: 1px solid #1e3a8a; background: #fff; color: #1e3a8a; border-radius: 4px; cursor: pointer; }
+    button:hover { background: #eef2ff; }
   </style>
 </head>
 <body>
@@ -29,6 +31,42 @@
   </header>
 
   <main>
+
+    <!-- ============================================================ -->
+    <!-- 0. Cookie status (first-party diagnostic)                    -->
+    <!-- ============================================================ -->
+    <div class="card">
+      <h2>Cookie Status</h2>
+      <p>
+        This panel shows first-party cookies readable by JavaScript on this page. It is a
+        diagnostic aid only. Third-party cookies set by the tags below may be blocked by
+        your browser's tracking protection or an ad blocker.
+      </p>
+      <div style="display:flex; gap:0.5rem; flex-wrap:wrap; margin-top:0.75rem;">
+        <button id="cookie-set" type="button">Set first-party demo cookie</button>
+        <button id="cookie-refresh" type="button">Refresh</button>
+        <button id="cookie-clear" type="button">Clear demo cookie</button>
+      </div>
+      <pre id="cookie-output" style="margin-top:0.75rem; padding:0.75rem; background:#f8f8f8; border:1px solid #ddd; border-radius:4px; font-size:0.8rem; white-space:pre-wrap; word-break:break-all;">document.cookie is empty</pre>
+    </div>
+    <script>
+      (function () {
+        var out = document.getElementById("cookie-output");
+        function render() {
+          out.textContent = document.cookie || "document.cookie is empty";
+        }
+        document.getElementById("cookie-set").addEventListener("click", function () {
+          document.cookie = "truzyx_demo_first_party=1; path=/; max-age=86400; SameSite=Lax";
+          render();
+        });
+        document.getElementById("cookie-refresh").addEventListener("click", render);
+        document.getElementById("cookie-clear").addEventListener("click", function () {
+          document.cookie = "truzyx_demo_first_party=; path=/; max-age=0; SameSite=Lax";
+          render();
+        });
+        render();
+      })();
+    </script>
 
     <!-- ============================================================ -->
     <!-- 1. Google Analytics (gtag.js)                                -->
@@ -195,7 +233,6 @@
           (d.head || d.body).appendChild(s);
         })();
       </script>
-    </script>
 
     <!-- ============================================================ -->
     <!-- 13. HubSpot tracking                                         -->
@@ -265,7 +302,69 @@
       <p>Loads Amplitude from cdn.amplitude.com.</p>
     </div>
     <script type="text/javascript">
-      (function(e,t){var n=e.amplitude||{_q:[],_iq:{}};var r=t.createElement("script");r.type="text/javascript";r.integrity="sha384-...";r.crossOrigin="anonymous";r.async=true;r.src="https://cdn.amplitude.com/libs/amplitude-8.18.0-min.gz.js";r.onload=function(){if(!e.amplitude.runQueuedFunctions){console.log("[Amplitude] Error: could not load SDK")}};var i=t.getElementsByTagName("script")[0];i.parentNode.insertBefore(r,i);function s(e,t){e.prototype[t]=function(){this._q.push([t].concat(Array.prototype.slice.call(arguments,0)));return this}}var o=function(){this._q=[];return this};var a=["add","append","clearAll","prepend","set","setOnce","unset","preInsert","postInsert","remove"];for(var c=0;c<a.length;c++){s(o,a[c])}n.Identify=o;n._iq={};n.init=function(e,t,n){function i(e,t){t||(t={});for(var n=0;n<a.length;n++){var r=a[n];t[r]=t[r]||function(e){return function(){e._q.push([r].concat(Array.prototype.slice.call(arguments,0)))}}(t[r]=new o)}n._iq[e]=t}i(e,t);var r=t&&t.forceNewInstance?n(e,t):n._iq[e];r._q=[];r._iq={};r.init(e,t,n);n._iq[e]=r};n.init("YOUR_API_KEY");e.amplitude=n})(window,document);
+      (function (e, t) {
+        var n = e.amplitude || { _q: [], _iq: {} };
+        var r = t.createElement("script");
+        r.type = "text/javascript";
+        r.async = true;
+        r.src = "https://cdn.amplitude.com/libs/amplitude-8.21.4-min.gz.js";
+        r.onload = function () {
+          if (e.amplitude.runQueuedFunctions) {
+            e.amplitude.runQueuedFunctions();
+          } else {
+            console.log("[Amplitude] Error: could not load SDK");
+          }
+        };
+        var i = t.getElementsByTagName("script")[0];
+        i.parentNode.insertBefore(r, i);
+        function s(e, t) {
+          e.prototype[t] = function () {
+            this._q.push([t].concat(Array.prototype.slice.call(arguments, 0)));
+            return this;
+          };
+        }
+        var o = function () {
+          this._q = [];
+          return this;
+        };
+        var a = ["add", "append", "clearAll", "prepend", "set", "setOnce", "unset"];
+        for (var u = 0; u < a.length; u++) {
+          s(o, a[u]);
+        }
+        n.Identify = o;
+        var c = function () {
+          this._q = [];
+          return this;
+        };
+        var p = ["setProductId", "setQuantity", "setPrice", "setRevenueType", "setEventProperties"];
+        for (var l = 0; l < p.length; l++) {
+          s(c, p[l]);
+        }
+        n.Revenue = c;
+        var d = ["init", "logEvent", "logRevenue", "setUserId", "setUserProperties", "setOptOut", "setVersionName", "setDomain", "setDeviceId", "setGlobalUserProperties", "identify", "clearUserProperties", "setGroup", "logRevenueV2", "regenerateDeviceId"];
+        function v(e) {
+          function t(t) {
+            e[t] = function () {
+              e._q.push([t].concat(Array.prototype.slice.call(arguments, 0)));
+            };
+          }
+          for (var n = 0; n < d.length; n++) {
+            t(d[n]);
+          }
+        }
+        v(n);
+        n.getInstance = function (e) {
+          e = (!e || e.length === 0 ? "$default_instance" : e).toLowerCase();
+          if (!n._iq.hasOwnProperty(e)) {
+            n._iq[e] = { _q: [] };
+            v(n._iq[e]);
+          }
+          return n._iq[e];
+        };
+        e.amplitude = n;
+      })(window, document);
+
+      amplitude.getInstance().init("YOUR_API_KEY");
     </script>
 
     <!-- ============================================================ -->
