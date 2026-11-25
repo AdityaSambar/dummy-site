@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dummy Test Site — Cookie Consent Widget</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: #f5f5f5; color: #111; }
+    header { background: #1e3a8a; color: #fff; padding: 1.5rem 2rem; }
+    header h1 { font-size: 1.5rem; }
+    header p { opacity: 0.8; font-size: 0.9rem; margin-top: 0.25rem; }
+    main { max-width: 960px; margin: 2rem auto; padding: 0 1rem; }
+    .card { background: #fff; border-radius: 8px; padding: 1.5rem; margin-bottom: 1.5rem; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+    .card h2 { font-size: 1.1rem; margin-bottom: 0.75rem; color: #1e3a8a; }
+    .card p { font-size: 0.9rem; color: #555; line-height: 1.5; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; }
+    .ad-slot { background: #f0f0f0; border: 2px dashed #ccc; border-radius: 4px; padding: 2rem; text-align: center; color: #999; font-size: 0.85rem; min-height: 120px; display: flex; align-items: center; justify-content: center; }
+    .video-wrap { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 8px; }
+    .video-wrap iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
+    footer { text-align: center; padding: 2rem; color: #888; font-size: 0.8rem; }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Dummy Test Site</h1>
+    <p>Purpose: test the Truzyx consent widget tag-blocking on a page full of third-party resources.</p>
+  </header>
+
+  <main>
+
+    <!-- ============================================================ -->
+    <!-- 1. Google Analytics (gtag.js)                                -->
+    <!-- ============================================================ -->
+    <div class="card">
+      <h2>Google Analytics</h2>
+      <p>Loads gtag.js from googletagmanager.com — sets <code>_ga</code>, <code>_gid</code> cookies.</p>
+    </div>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-XXXXXXXXXX');
+    </script>
+
+    <!-- ============================================================ -->
+    <!-- 2. Google Tag Manager (container)                            -->
+    <!-- ============================================================ -->
+    <div class="card">
+      <h2>Google Tag Manager</h2>
+      <p>Loads GTM container from googletagmanager.com.</p>
+    </div>
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-XXXXXXX');</script>
+
+    <!-- ============================================================ -->
+    <!-- 3. Facebook Pixel                                            -->
+    <!-- ============================================================ -->
+    <div class="card">
+      <h2>Facebook Pixel</h2>
+      <p>Loads fbevents.js from connect.facebook.net — sets <code>_fbp</code> cookie.</p>
+    </div>
+    <script>
+      !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+      n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+      n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+      t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script',
+      'https://connect.facebook.net/en_US/fbevents.js');
+      fbq('init', '1234567890');
+      fbq('track', 'PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1234567890&ev=PageView&noscript=1"/></noscript>
+
+    <!-- ============================================================ -->
+    <!-- 4. DoubleClick / Google Ads                                  -->
+    <!-- ============================================================ -->
+    <div class="card">
+      <h2>DoubleClick Ad Tag</h2>
+      <p>Loads an ad iframe from doubleclick.net.</p>
+      <div class="ad-slot">
+        <iframe src="https://ad.doubleclick.net/ddm/adi/N1234.567890DOMAIN/B12345678.987654321;sz=300x250;ord=[timestamp];dc_lat=;dc_rdid=;tag_for_child_directed_treatment=;tfua=?" width="300" height="250" frameborder="0" scrolling="no"></iframe>
+      </div>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- 5. YouTube embed                                             -->
+    <!-- ============================================================ -->
+    <div class="card">
+      <h2>YouTube Embed</h2>
+      <p>Embedded YouTube video (youtube.com iframe).</p>
+      <div class="video-wrap">
+        <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" allowfullscreen></iframe>
+      </div>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- 6. Twitter widget                                            -->
+    <!-- ============================================================ -->
+    <div class="card">
+      <h2>Twitter / X Widget</h2>
+      <p>Loads widgets.js from platform.twitter.com.</p>
+    </div>
+    <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+    <blockquote class="twitter-tweet"><a href="https://twitter.com/TwitterDev/status/1234567890"></a></blockquote>
+
+    <!-- ============================================================ -->
+    <!-- 7. LinkedIn Insight Tag                                      -->
+    <!-- ============================================================ -->
+    <div class="card">
+      <h2>LinkedIn Insight Tag</h2>
+      <p>Loads insight.min.js from snap.licdn.com.</p>
+    </div>
+    <script type="text/javascript">
+      _linkedin_partner_id = "1234567";
+      window._linkedin_data_partner_ids = window._linkedin_data_partner_ids || [];
+      window._linkedin_data_partner_ids.push(_linkedin_partner_id);
+    </script>
+    <script type="text/javascript">
+      (function(l) {
+        if (!l){window.lintrk = function(a,b){window.lintrk.q.push([a,b])}; window.lintrk.q=[]}
+        var s = document.getElementsByTagName("script")[0];
+        var b = document.createElement("script");
+        b.type = "text/javascript"; b.async = true;
+        b.src = "https://snap.licdn.com/li.lms-analytics/insight.min.js";
+        s.parentNode.insertBefore(b, s);
+      })(window.lintrk);
+    </script>
+    <noscript><img height="1" width="1" style="display:none;" alt="" src="https://px.ads.linkedin.com/collect/?pid=1234567&fmt=gif" /></noscript>
+
+    <!-- ============================================================ -->
+    <!-- 8. Hotjar                                                    -->
+    <!-- ============================================================ -->
+    <div class="card">
+      <h2>Hotjar</h2>
+      <p>Loads Hotjar tracking script from static.hotjar.com.</p>
+    </div>
+    <script>
+      (function(h,o,t,j,a,r){
+        h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
+        h._hjSettings={hjid:1234567,hjsv:6};
+        a=o.getElementsByTagName('head')[0];
+        r=o.createElement('script');r.async=1;
+        r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+        a.appendChild(r);
+      })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
+    </script>
+
+    <!-- ============================================================ -->
+    <!-- 9. Microsoft Clarity                                         -->
+    <!-- ============================================================ -->
+    <div class="card">
+      <h2>Microsoft Clarity</h2>
+      <p>Loads clarity.js from www.clarity.ms.</p>
+    </div>
+    <script type="text/javascript">
+      (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+      })(window, document, "clarity", "script", "abc123def");
+    </script>
+
+    <!-- ============================================================ -->
+    <!-- 10. Google AdSense (script)                                  -->
+    <!-- ============================================================ -->
+    <div class="card">
+      <h2>Google AdSense</h2>
+      <p>Loads adsbygoogle.js from pagead2.googlesyndication.com.</p>
+    </div>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1234567890123456" crossorigin="anonymous"></script>
+
+    <!-- ============================================================ -->
+    <!-- 11. Moat / IAS (ad verification)                             -->
+    <!-- ============================================================ -->
+    <div class="card">
+      <h2>Third-party tracking image</h2>
+      <p>Loads a 1x1 tracking pixel from a third-party domain.</p>
+      <img src="https://www.google-analytics.com/collect?v=1&t=event&tid=UA-XXXXX-Y&cid=12345&ec=engagement&ea=click&el=button" width="1" height="1" alt="" style="display:none;" />
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- 12. Disqus comments (iframe)                                 -->
+    <!-- ============================================================ -->
+    <div class="card">
+      <h2>Disqus Comments</h2>
+      <p>Loads Disqus embed from disqus.com.</p>
+      <div id="disqus_thread"></div>
+      <script>
+        var disqus_config = function () { this.page.url = window.location.href; this.page.identifier = "dummy-test"; };
+        (function() {
+          var d = document, s = d.createElement('script');
+          s.src = 'https://example.disqus.com/embed.js';
+          s.setAttribute('data-timestamp', +new Date());
+          (d.head || d.body).appendChild(s);
+        })();
+      </script>
+    </script>
+
+    <!-- ============================================================ -->
+    <!-- 13. HubSpot tracking                                         -->
+    <!-- ============================================================ -->
+    <div class="card">
+      <h2>HubSpot Tracking</h2>
+      <p>Loads HubSpot analytics from js.hs-analytics.net.</p>
+    </div>
+    <script type="text/javascript" id="hs-script-loader" async defer src="https://js.hs-analytics.net/analytics/1234567/1234567.js"></script>
+
+    <!-- ============================================================ -->
+    <!-- 14. Sentry error tracking                                    -->
+    <!-- ============================================================ -->
+    <div class="card">
+      <h2>Sentry Error Tracking</h2>
+      <p>Loads Sentry browser SDK from browser.sentry-cdn.com.</p>
+    </div>
+    <script src="https://browser.sentry-cdn.com/7.0.0/bundle.min.js" crossorigin="anonymous"></script>
+
+    <!-- ============================================================ -->
+    <!-- 15. Stripe (payment)                                         -->
+    <!-- ============================================================ -->
+    <div class="card">
+      <h2>Stripe.js</h2>
+      <p>Loads Stripe.js from js.stripe.com.</p>
+    </div>
+    <script src="https://js.stripe.com/v3/"></script>
+
+    <!-- ============================================================ -->
+    <!-- 16. Recaptcha                                                -->
+    <!-- ============================================================ -->
+    <div class="card">
+      <h2>Google reCAPTCHA</h2>
+      <p>Loads reCAPTCHA from www.google.com.</p>
+    </div>
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    <div class="g-recaptcha" data-sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"></div>
+
+    <!-- ============================================================ -->
+    <!-- 17. Mixpanel                                                 -->
+    <!-- ============================================================ -->
+    <div class="card">
+      <h2>Mixpanel</h2>
+      <p>Loads Mixpanel from cdn.mxpnl.com.</p>
+    </div>
+    <script type="text/javascript">
+      (function(f,b){if(!b.__SV){var e,d,i,g;window.mixpanel=b;b._i=[];b.init=function(e,d,f){function a(c,e){var a=e.split(".");2==a.length&&(c=c[a[0]],e=a[1]);c[e]=function(){c.push([e].concat(Array.prototype.slice.call(arguments,0)))}}var c=b;"undefined"!==typeof f?c=b[f]=[]:f="mixpanel";a(c,"track");a(c,"identify");b._i.push([e,d,f])};b.__SV=1.2;e=f.createElement("script");e.type="text/javascript";e.async=!0;e.src="undefined"!==typeof MIXPANEL_CUSTOM_LIB_URL?MIXPANEL_CUSTOM_LIB_URL:"file:"===f.location.protocol&&"//cdn.mxpnl.com/libs/mixpanel-2-latest.min.js".match(/^\/\//)?"https://cdn.mxpnl.com/libs/mixpanel-2-latest.min.js":"//cdn.mxpnl.com/libs/mixpanel-2-latest.min.js";d=f.getElementsByTagName("script")[0];d.parentNode.insertBefore(e,d)}})(document,window.mixpanel||[]);
+      mixpanel.init("YOUR_TOKEN");
+    </script>
+
+    <!-- ============================================================ -->
+    <!-- 18. Segment                                                  -->
+    <!-- ============================================================ -->
+    <div class="card">
+      <h2>Segment</h2>
+      <p>Loads Segment analytics from cdn.segment.com.</p>
+    </div>
+    <script>
+      !function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","debug","page","once","off","on","addSourceMiddleware","addIntegrationMiddleware","setAnonymousId","addDestinationMiddleware"];analytics.factory=function(e){return function(){var t=Array.prototype.slice.call(arguments);t.unshift(e);analytics.push(t);return analytics}};for(var e=0;e<analytics.methods.length;e++){var key=analytics.methods[e];analytics[key]=analytics.factory(key)}analytics.load=function(key,e){var t=document.createElement("script");t.type="text/javascript";t.async=!0;t.src="https://cdn.segment.com/analytics.js/v1/"+key+"/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(t,n);analytics._loadOptions=e};analytics.SNIPPET_VERSION="4.15.3";analytics.load("YOUR_WRITE_KEY");analytics.page();}}();
+    </script>
+
+    <!-- ============================================================ -->
+    <!-- 19. Amplitude                                                -->
+    <!-- ============================================================ -->
+    <div class="card">
+      <h2>Amplitude</h2>
+      <p>Loads Amplitude from cdn.amplitude.com.</p>
+    </div>
+    <script type="text/javascript">
+      (function(e,t){var n=e.amplitude||{_q:[],_iq:{}};var r=t.createElement("script");r.type="text/javascript";r.integrity="sha384-...";r.crossOrigin="anonymous";r.async=true;r.src="https://cdn.amplitude.com/libs/amplitude-8.18.0-min.gz.js";r.onload=function(){if(!e.amplitude.runQueuedFunctions){console.log("[Amplitude] Error: could not load SDK")}};var i=t.getElementsByTagName("script")[0];i.parentNode.insertBefore(r,i);function s(e,t){e.prototype[t]=function(){this._q.push([t].concat(Array.prototype.slice.call(arguments,0)));return this}}var o=function(){this._q=[];return this};var a=["add","append","clearAll","prepend","set","setOnce","unset","preInsert","postInsert","remove"];for(var c=0;c<a.length;c++){s(o,a[c])}n.Identify=o;n._iq={};n.init=function(e,t,n){function i(e,t){t||(t={});for(var n=0;n<a.length;n++){var r=a[n];t[r]=t[r]||function(e){return function(){e._q.push([r].concat(Array.prototype.slice.call(arguments,0)))}}(t[r]=new o)}n._iq[e]=t}i(e,t);var r=t&&t.forceNewInstance?n(e,t):n._iq[e];r._q=[];r._iq={};r.init(e,t,n);n._iq[e]=r};n.init("YOUR_API_KEY");e.amplitude=n})(window,document);
+    </script>
+
+    <!-- ============================================================ -->
+    <!-- 20. Braze (Appboy)                                           -->
+    <!-- ============================================================ -->
+    <div class="card">
+      <h2>Braze (Appboy)</h2>
+      <p>Loads Braze SDK from js.appboycdn.com.</p>
+    </div>
+    <script type="text/javascript">
+      (function(){var b=window.appboy=window.appboy||{};if(b.initialized){return;}b._q=[];var a=["initialize","changeUser","openSession","requestPushPermission","requestFeedRefresh","requestContentCardsRefresh","logCustomEvent","logPurchase","setEmailNotificationSubscriptionType","setPushNotificationSubscriptionType","setSMSNotificationSubscriptionType","setInAppMessageCallback","destroy","getUser","subscribeToNewInAppMessages","removeSubscription","registerAppboyPushMessages","unregisterAppboyPushMessages","setLogger","wipeData"];for(var i=0;i<a.length;i++){b[a[i]]=function(a){return function(){b._q.push([a,arguments])}}(a[i])}var s=document.createElement("script");s.type="text/javascript";s.async=true;s.src="https://js.appboycdn.com/web-sdk/3.3/appboy.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(s,n);})();
+      appboy.initialize("YOUR_API_KEY", {baseUrl: "https://sdk.iad-01.braze.com"});
+    </script>
+
+  </main>
+
+  <footer>
+    <p>Dummy Test Site — for testing the Truzyx consent widget tag-blocking.</p>
+    <p>Host on GitHub Pages and inject the widget via Chrome DevTools Console.</p>
+  </footer>
+
+</body>
+</html>
